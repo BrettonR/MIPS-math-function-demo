@@ -24,7 +24,7 @@ main:
 	# 2). save important registers to the stack
 	
 	# 3). Call the function
-	jal get_function
+	#jal get_function
 	# 4.) Read return values and outputs
 	
 	# 5.) deallocate stack space

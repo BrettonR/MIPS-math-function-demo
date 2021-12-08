@@ -9,14 +9,21 @@ newline: .asciiz "\n"
 .text
 
 
-# fake main function to test the get_function (polynomial) as a stand-alone mips program
+# fake main function to test the get_poly as a stand-alone mips program
 #
 # inputs required: none
 #
 # needs to return:
 #		- the user-entered integer
 #		- the address of the array
+#
+# comment out the main function to compile the whole directory and use the get_poly function
+# the below function call in the fake main function can be used for reference to call the get_poly function
 
+#### START TEST of get_poly ####
+
+# main acts as a driver program to test the function get_poly by calling it on the stack
+# comment out main to compile the directory and use get_poly globally
 main:
 
 ## Call the get_function
@@ -51,10 +58,13 @@ addiu $sp, $sp, 12
 li $v0, 10
 syscall
 
+# end of stand-alone driver-style test program 
 
-#### TEST of get_poly ####
+#### END TEST of get_poly ####
 
-#.globl  get_poly
+#### START of function get_poly ####
+
+.globl  get_poly
 # this gets a math function from the user
 # the math function is a polynomial stored in an array
 # the user specifies the degree of the polynmial
@@ -159,7 +169,7 @@ poly_loop:
 	addi $t2, $t2, -1
 
 
-	#b exit_poly_loop  # remove this line one the branch bltz is working
+	#b exit_poly_loop  # remove this line once the branch bltz is working
 
 	b poly_loop
 
@@ -179,12 +189,4 @@ sw $t1, 4($sp)
 ## Function Requirement Step 3 - Return to caller
 jr $ra
 
-#### END TEST of get_function ####
-
-
-# terminate testing program
-li $v0, 10
-syscall
-
-
-# end of stand-alone program 
+#### END of function get_poly ####
