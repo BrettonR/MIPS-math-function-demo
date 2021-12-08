@@ -1,4 +1,4 @@
-# math-functions
+# file for global function get_poly which gets a polynomial function from the user
 
 .data
 poly_degree: .asciiz "Enter the degree of the polynomial\n"
@@ -30,7 +30,7 @@ addiu $sp, $sp, -12
 sw $ra, 8($sp)
 
 # 3) Call the function
-jal get_function
+jal get_poly
 
 # 4) Read the return values (polynomial degree and memory address of array), 
 #	and restore the return address register from the stack
@@ -52,14 +52,14 @@ li $v0, 10
 syscall
 
 
-#### TEST of get_function ####
+#### TEST of get_poly ####
 
-#.globl  get_function
+#.globl  get_poly
 # this gets a math function from the user
 # the math function is a polynomial stored in an array
 # the user specifies the degree of the polynmial
 # we have to store an integer for the degree of the polynomial and an array of n size
-get_function:
+get_poly:
 
 ## Function Requirement Step 1) Read arguments off of the stack. No input arguments are needed
 
@@ -176,22 +176,10 @@ sw $t0, 0($sp)
 sw $t1, 4($sp)
 
 
-
-
 ## Function Requirement Step 3 - Return to caller
 jr $ra
 
 #### END TEST of get_function ####
-
-#### START TEST of print_function ####
-## Function Requirement Step 1) Read arguments off of the stack. No input arguments are needed
-
-## Function Requirement Step 2) Business Logic
-##				- Prompt user for the degree of their polynomial and get the user input
-##				- Allocate memory for an array to store the coefficients for their polynomial
-##	
-
-#### END TEST of print_function ####
 
 
 # terminate testing program
@@ -199,87 +187,4 @@ li $v0, 10
 syscall
 
 
-# end of stand-alone program testing
-
-
-
-
-
-
-# print-function
-.globl  print_function
-print_function:
-	b exit_print
-exit_print:
-jr $ra
-	# read the degree of the polynomial from the stack
-	# read the array from the s
-	
-	
-	# loop through each coefficient in the polynomial stored in the array
-	
-	# branch to exit_print if polynomial degree counter is less than zero
-	
-	# display the coefficient for the current degree counter
-	
-	# display formatting
-	#li $v0, 4
-	#la $a0, x_power
-	#syscall 
-	
-	# decrement the degree counter
-	
-	# branch back to start of loop
-	
-	
-
-
-#.globl  get_function
-# this gets a math function from the user
-# the math function is a polynomial stored in an array
-# the user specifies the degree of the polynmial
-# we have to store an integer for the degree of the polynomial and an array of n size
-#get_function:
-	# Prompt the user for the degree of the polynomial
-	#li $v0, 4
-	#la $a0, poly_degree
-	#syscall
-	# Get the degree of the polynomial from the user
-	#li $v0, 5
-	#syscall
-	#move $t1, $v0	# move the degree of the polynomial to $t1
-	
-	# allocate an array of of size n+1 to hold the polynomial aka. from zero to n
-	
-	
-	# start a for-style loop to get the coefficients for the terms in the polynomial
-
-	
-	# initialize counters
-	#li $t2, $t1	# let $t2 be the counter, it starts at 
-	# branch if less than zero (we need a coeeficient for x^0)
-
-	
-	
-	
-	#b exit_get
-#exit_get:
-#jr $ra
-
-.globl  evaluate_function
-evaluate_function:
-	b exit_evaluate
-exit_evaluate:
-jr $ra
-
-.globl  integrate_function
-integrate_function:
-	b exit_integrate
-exit_integrate:
-jr $ra
-
-.globl  zero_function
-zero_function:
-	b exit_zero
-exit_zero:
-jr $ra
+# end of stand-alone program 
